@@ -173,6 +173,43 @@ function deleteChildren(parent) {
     parent.firstChild.remove();
 }
 
+// Function that sets player score to localStorage
+function pushtolocalStorage() {
+  // Set my variable to inputs value
+  var name = initialsInput.value;
+  // Create my object that we push to localStorage
+  var playerObject = { initials: name, score: scoreCount }
+  // If localStorage is empty create new localStorage
+  if(localStorage.getItem("score") === null) {
+    // Create an array of objects
+    var scoreArray = [];
+    // Push my object to that array
+    scoreArray.push(playerObject);
+    // Set localStorage to my array
+    localStorage.setItem('score', JSON.stringify(scoreArray));
+    // If it exists
+  } else {
+    // Create an array
+    var scoreArray = [];
+    // Get my localStorage which must be parsed 
+    scoreArray = JSON.parse(localStorage.getItem('score'));
+    // Push my object to newly created array which is a mirror of localStorage
+    scoreArray.push(playerObject);
+    // Push my Array of objects to localStorage
+    localStorage.setItem('score', JSON.stringify(scoreArray));
+  }  
+}
+
 // Event listener to start a game
 start.addEventListener("click", startQuiz);
-
+// Event listener to submit initials and score to localStorage
+submitHighscore.addEventListener("click", function(){
+  //If initials input has no value show player an alert that he needs to put his initials
+  if (!initials.value) {
+    alert("Please add your initials.");
+  // Push to localStorae and send player to highscores.html page
+  } else {
+    pushtolocalStorage();
+    location.href = "highscores.html";
+  }
+});
