@@ -5,7 +5,7 @@ I created this project so I can test my knowledge about javascript. It can be us
 
 ## Demo
 
-![Alt text](/images/demo_image.png)
+![Alt text](/assets/images/demo_image.png)
 
 https://joniqs.github.io/Code-Quiz/index.html
 
